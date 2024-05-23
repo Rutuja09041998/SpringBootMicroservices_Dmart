@@ -1,0 +1,21 @@
+server:
+  port: 8060
+spring:
+  application:
+    name: APIGateway
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: DMARTSERVICE
+            uri: lb://DMARTSERVICE
+            predicates: 
+            - Path=/dmart/** 
+          - id: CLIENTSERVICE
+            uri: lb://CLIENTSERVICE
+            predicates: 
+            - Path=/client/** 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
